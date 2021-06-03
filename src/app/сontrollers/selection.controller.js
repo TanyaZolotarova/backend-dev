@@ -26,7 +26,8 @@ export class SelectionController {
     }
 
     try {
-      return res.json({ data: await this.service.add(ids) });
+      await this.service.add(ids)
+      return res.json({ data: await this.service.getAll() });
     } catch (e) {
       return next(e);
     }
