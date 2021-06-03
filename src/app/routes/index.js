@@ -9,9 +9,7 @@ export function routes(router) {
 
   router.get("/selection", selectionController.getAll);
   router.post("/selection", selectionController.create);
-  router.delete("/selection", selectionController.delete);
-  // router.get
-  // router.delete
+  router.post("/selection-delete", selectionController.delete);
 
   return router;
 }
