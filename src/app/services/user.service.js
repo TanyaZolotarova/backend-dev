@@ -5,27 +5,26 @@ export class UserService {
     this.model = userModel;
   }
 
-  /// req.body = {  selection: { id: 1 } }
-
-  store(data) {
-    // 1 > selection  ? remove 1 from selection : selection.push(1)
-
-    // /put store(data)
-    // get return selection.
-
-    // front: get selection > ngrx > render > id user = selection.id = checked
-
-    // 3 effects, 1 for put selection, 1 for get users, 1 get selection
-  }
+  store(data) {}
 
   show() {
     return this.model.findOne({}, {}, { sort: { created_at: -1 } });
   }
 
   search(name, pageSize = 0, pageIndex) {
-    console.log({ name });
+    console.log({ name, pageSize, pageIndex });
     return this.model.find({ name: { $regex: name, $options: "i" } })
-        .skip(pageSize * (pageIndex - 1))
+        .skip(pageSize * pageIndex + 1)
         .limit(pageSize);
   }
+
+  getAll() {
+    return this.model
+        .find();
+  }
+
+  getAmountOfRows() {
+    return this.model.count();
+  }
+
 }

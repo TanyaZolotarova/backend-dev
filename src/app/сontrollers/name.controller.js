@@ -10,14 +10,22 @@ class NameController {
       const {
         query: { search, pageSize, pageIndex },
       } = req;
+      console.log("search: ",search)
+      console.log(pageSize)
+      console.log(pageIndex)
+      const allUsers = await this.userService.search(search, parseInt(pageSize) , parseInt(pageIndex));
+      const amountOfRows = await this.userService.getAmountOfRows();
+
+
 
       return res.json(
-        await this.userService.search(
-          search || "",
-          Number(pageSize || 20),
-          Number(pageIndex || 1)
-        )
+          {
+            allUsers,
+            amountOfRows
+          }
+
       );
+
     } catch (e) {
       return next(e);
     }
