@@ -40,8 +40,6 @@ export class SelectionController {
     if (error) {
       return res.status(422).json(error.message);
     }
-    // todo validate request
-
     try {
       return res.json({ data: await this.service.remove(ids) });
     } catch (e) {

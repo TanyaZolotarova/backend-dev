@@ -13,8 +13,8 @@ export class UserService {
 
   async search(name, pageSize = 0, pageIndex) {
     console.log(await this.model.find({ name: { $regex: name } }));
-    return this.model.find({ name: { $regex: name, $options: "i" } })
-        .skip(pageSize * pageIndex + 1)
+    return this.model.find({ name: { $regex: name, } })
+        .skip(pageSize * pageIndex)
         .limit(pageSize);
   }
 
@@ -24,7 +24,7 @@ export class UserService {
   }
 
    getAmountOfRows(name) {
-    return this.model.count({ name: { $regex: name }})
+    return this.model.count({ name: { $regex: name}})
   }
 
 }
