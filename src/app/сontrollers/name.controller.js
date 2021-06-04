@@ -14,7 +14,7 @@ class NameController {
       console.log(pageSize)
       console.log(pageIndex)
       const allUsers = await this.userService.search(search, parseInt(pageSize) , parseInt(pageIndex));
-      const amountOfRows = await this.userService.getAmountOfRows();
+      const amountOfRows = await this.userService.getAmountOfRows(search);
 
 
 
